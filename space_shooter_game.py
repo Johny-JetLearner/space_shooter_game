@@ -7,12 +7,17 @@ pygame.display.update()
 red=pygame.image.load(r"C:\Users\pc\Desktop\SiderAddons\Python\pro game developer\red.png")
 red=pygame.transform.scale(red,(44,77))
 yellow=pygame.image.load(r"C:\Users\pc\Desktop\SiderAddons\Python\pro game developer\yellow.png")
-yellow=pygame.transform.scale(yellow,(44,77))
-rectangle=pygame.Rect(350,100,100,600)
+yellow=pygame.transform.scale(yellow,(80,60))
+yellow=pygame.transform.rotate(yellow,90)
+rectangle_yellow=pygame.Rect(0,300,80,60)
+rectangle=pygame.Rect(375,0,25,2000)
 def display_images():
+  screen.blit(yellow,(rectangle_yellow.x,rectangle_yellow.y))
   pygame.draw.rect(screen,"white",rectangle)
   pygame.display.update()
 while True:
+    keys_pressed=pygame.key.get_pressed()
+    #yellowspaceshipmove()
     display_images()
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
