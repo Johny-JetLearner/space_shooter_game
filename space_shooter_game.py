@@ -15,10 +15,17 @@ def display_images():
   screen.blit(yellow,(rectangle_yellow.x,rectangle_yellow.y))
   pygame.draw.rect(screen,"white",rectangle)
   pygame.display.update()
+def yellowspaceshipmove(keys_pressed):
+    if keys_pressed[pygame.K_a]:
+        rectangle_yellow.x=rectangle_yellow.x-3
+    if keys_pressed[pygame.K_d]:
+            if rectangle_yellow.x<=320:
+                rectangle_yellow.x=rectangle_yellow.x+3
 while True:
     keys_pressed=pygame.key.get_pressed()
-    #yellowspaceshipmove()
+    yellowspaceshipmove(keys_pressed)
     display_images()
+    screen.blit(space_1,(0,0))
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             pygame.quit()
