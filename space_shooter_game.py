@@ -24,11 +24,16 @@ rectangle=pygame.Rect(375,0,25,2000)
 def fireblastmove():
      for i in fireblast1list:
           i.x=i.x+3
+     for l in fireblast2list:
+          l.x=l.x-3
+          if rectangle_yellow.colliderect(l)
 def display_images():
   screen.blit(yellow,(rectangle_yellow.x,rectangle_yellow.y))
   screen.blit(red,(rectangle_red.x,rectangle_red.y))
   for i in fireblast1list:
        screen.blit(fireblast1,i)
+  for l in fireblast2list:
+       screen.blit(fireblast2,l)
   pygame.draw.rect(screen,"white",rectangle)
   pygame.display.update()
 def yellowspaceshipmove(keys_pressed):
@@ -72,8 +77,8 @@ while True:
                   fireblast1list.append(rect1)
              if event.key==pygame.K_RSHIFT:
                   rect2=fireblast2.get_rect()
-                  rect2.x=rectangle_red.x+rectangle_red.width
-                  rect2.y=rectangle_red.y+60
+                  rect2.x=rectangle_red.x-rectangle_red.height
+                  rect2.y=rectangle_red.y+32
                   fireblast2list.append(rect2)
         if event.type==pygame.QUIT:
             pygame.quit()
