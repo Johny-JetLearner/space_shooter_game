@@ -1,5 +1,7 @@
 import pygame
 pygame.init()
+pygame.font.init()
+pygame.mixer.init()
 screen=pygame.display.set_mode((800,600))
 space=pygame.image.load(r"C:\Users\pc\Desktop\SiderAddons\Python\pro game developer\space.png")
 space_1=pygame.transform.scale(space,(800,600))
@@ -16,17 +18,24 @@ fireblast1=pygame.transform.scale(fireblast1,(60,20))
 fireblast2=pygame.image.load(r"C:\Users\pc\Desktop\SiderAddons\Python\pro game developer\fireblast.png")
 fireblast2=pygame.transform.scale(fireblast2,(60,20))
 fireblast2=pygame.transform.rotate(fireblast2,180)
+font=pygame.font.SysFont("Serif",35)
+score_yellow=0
+score_red=0
 fireblast1list=[]
 fireblast2list=[]
 rectangle_yellow=pygame.Rect(0,300,80,60)
 rectangle_red=pygame.Rect(700,300,80,60)
 rectangle=pygame.Rect(375,0,25,2000)
 def fireblastmove():
+     global score_yellow,score_red
      for i in fireblast1list:
           i.x=i.x+3
+          if rectangle_red.colliderect(i):
+               score_red=+1
      for l in fireblast2list:
           l.x=l.x-3
-          if rectangle_yellow.colliderect(l)
+          if rectangle_yellow.colliderect(l):
+               score_yellow=+1
 def display_images():
   screen.blit(yellow,(rectangle_yellow.x,rectangle_yellow.y))
   screen.blit(red,(rectangle_red.x,rectangle_red.y))
@@ -62,6 +71,8 @@ def redspaceshipmove(keys_pressed):
          if rectangle_red.y<540:
                  rectangle_red.y+=3
 while True:
+    text=font.render(str(score_yellow),True,"yellow")
+    screen.blit(text,(0,0))
     keys_pressed=pygame.key.get_pressed()
     yellowspaceshipmove(keys_pressed)
     redspaceshipmove(keys_pressed)
